@@ -1,0 +1,70 @@
+﻿@model List<NewJapaneseExam.Models.Verb>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/skel.min.js"></script>
+    <script src="~/js/skel-layers.min.js"></script>
+    <script src="~/js/init.js"></script>
+    @*<noscript>
+            <link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-xlarge.css" />
+        </noscript>*@
+</head>
+<body id="top">
+    <header id="header" class="skel-layers-fixed">
+        <h1><a href="/home/index">Japanese Exam</a></h1>
+    </header>
+    <!-- One -->
+    <section id="one" class="wrapper style1">
+        <header class="major">
+            <h2>@ViewBag.Title Exam</h2><hr />
+        </header>
+        @{
+            foreach (var verb in Model)
+            {
+                <div class="container">
+                    @{string chineseid = "chinese" + @verb.id;
+                        string correct = "correct" + @verb.id;
+                        string wrong = "wrong" + @verb.id;
+                        string voiceWord = "スタート！" + verb.japanese;
+                    }
+                    <div id=@verb.id class="row">
+                        <div class="3u">
+                            <section id=@correct class="special box ready"><br /><i class="icon fa-circle-o fa-5x"></i></section>
+                        </div>
+                        <div class="6u">
+                            <section class="special box">
+                                <input type="button" class="voice button special" value="Voice" data-word=@voiceWord><br /><br />
+                                <div class="row" style="height:50px">
+                                    <div class="3u" style="visibility:hidden"><section class="special box"></section></div>
+                                    <div class="6u"><input type="text" id=@chineseid placeholder="chinese" /><br /></div>
+                                    <div class="3u" style="visibility:hidden"><section class="special box"></section></div>
+                                </div>
+                                <input type="button" id=@verb.id class="send button special" value="Send" data-value=@verb.chinese data-wrong=@verb.VoiceToChineseWrong><br /><hr />
+                                @*@{
+                                    if (!verb.note.IsEmpty())
+                                    {
+                                        <textarea rows="5" disabled>@verb.note</textarea>
+                                    }
+                                }*@
+                            </section>
+                        </div>
+
+                        <div class="3u">
+
+                            <section id=@wrong class="special box ready"><br /><i class="icon fa-times fa-5x"></i></section>
+                        </div>
+                    </div>
+                </div>
+                                    }
+        }
+    </section>
+</body>
+</html>
+<script src="~/js/Verb/VoiceToChinese.js"></script>

@@ -1,0 +1,45 @@
+﻿@model List<NewJapaneseExam.Models.Verb>
+
+@{
+    var style1_start = "<section class='wrapper style1'><div class='container'><div class='row'>";
+    var style3_start = "<section class='wrapper style3'><div class='container'><div class='row'>";
+    var style_close = "</div></div></section>";
+
+    int num = 0;
+    foreach (var word in Model)
+    {
+        if (true)
+        {
+            if (num == 0)
+            {
+                @Html.Raw(style1_start);
+            }
+            if (num == 4)
+            {
+                @Html.Raw(style3_start);
+            }
+
+            string id = "/exam/setting?id=" + word.id;
+            <div class="3u">
+                <section class="special box">
+                    <a id=@id class="icon fa-cog fa-2x dark"></a>
+                    <p>@word.insert_date.ToShortDateString()</p>
+                    <h2>@word.japanese</h2>
+                    <hr />
+                    <h2>@word.chinese</h2><hr />
+                    @{
+                        if (!word.note.IsEmpty())
+                        {
+                            <textarea rows="5" disabled>@word.note</textarea>
+                        }
+                    }
+                </section>
+            </div>
+            if (num == 3 || num == 7)
+            {
+                @Html.Raw(style_close);
+            }
+            num = (num + 1) % 8;
+        }
+    }
+}

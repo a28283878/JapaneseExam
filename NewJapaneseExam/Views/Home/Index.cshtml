@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    List<SelectListItem> types = new List<SelectListItem>();
+    types.Add(new SelectListItem() { Text = "動詞", Value = "1" });
+    types.Add(new SelectListItem() { Text = "名詞", Value = "2" });
+    types.Add(new SelectListItem() { Text = "形容詞", Value = "3" });
+    types.Add(new SelectListItem() { Text = "形容動詞", Value = "4" });
+}
+
+@{
+    List<SelectListItem> exams = new List<SelectListItem>();
+    exams.Add(new SelectListItem() { Text = "Translation Exam", Value = "1" });
+    exams.Add(new SelectListItem() { Text = "Listening Exam", Value = "2" });
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/skel.min.js"></script>
+    <script src="~/js/skel-layers.min.js"></script>
+    <script src="~/js/init.js"></script>
+</head>
+<body id="top">
+    <header id="header" class="skel-layers-fixed">
+        <h1><a href="/home/index">Japanese Exam</a></h1>
+    </header>
+    <!-- Header -->
+    <header id="header" class="skel-layers-fixed">
+        <h1><a href="">Japanese Exam</a></h1>
+        <nav id="nav">
+            @*<ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+                    <li><a href="#" class="button special">Sign Up</a></li>
+                </ul>*@
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <h2>日本語テスト</h2>
+            <ul class="actions">
+                <li><a href="/exam/allword" class="button big special">All Words</a></li>
+                <li><a href="/exam/insert?type=1" class="button big alt">Insert New Verbs</a></li>
+            </ul>
+            @*<ul class="actions">
+                <li><a href="/exam/allword?type=1" class="button big special">All Verbs</a></li>
+                <li><a href="/exam/insert?type=1" class="button big alt">Insert New Verbs</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="/exam/allword?type=2" class="button big special">All Nouns</a></li>
+                <li><a href="/exam/insert?type=2" class="button big alt">Insert New Nouns</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="/exam/allword?type=3" class="button big special">All ADJECTIVES</a></li>
+                <li><a href="/exam/insert?type=3" class="button big alt">Insert New ADJECTIVES</a></li>
+            </ul>*@
+        </div>
+    </section>
+    <!-- Verb CTJ -->
+    <section id="one" class="wrapper style1">
+        <header class="major">
+            <h2>Exam</h2>
+            <div class="row">
+                <div class="2u"><p></p></div>
+                <div class="4u">
+                    @Html.DropDownList("Type", types)
+                </div>
+                <div class="4u">
+                    @Html.DropDownList("Exam", exams)
+                </div>
+                <div class="2u"><p></p></div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-sun-o major"></i><hr />
+                        <a id="todayrandom" class="button big special">Today Random</a>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-globe major"></i><hr />
+                        <a id="allrandom" class="button big special">All Random</a>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-calendar major"></i><br /><br />
+                        <input type="date" id="date" /><br /><br />
+                        <input type="button" id="send" class="button big special send" value="Select One Day">
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-times major"></i><hr />
+                        <a id="wordwrong" class="button big special">Wrong Random</a>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-calendar major"></i><br /><br />
+                        <input type="number" id="number" value="0"/><br /><br />
+                        <input type="button" id="numberrandom" class="button big special send" value="Random Number">
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
+<script src="~/js/Home/SelectOneDay.js"></script>
